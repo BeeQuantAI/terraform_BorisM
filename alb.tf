@@ -2,8 +2,8 @@ resource "aws_lb" "platform_api_alb" {
   name               = var.alb_name
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.default.id]
-  subnets            = [aws_subnet.BeeQuantAI-subnet-public1-ap-southeast-2a.id, aws_subnet.BeeQuantAI-subnet-public2-ap-southeast-2b.id]
+  security_groups    = [aws_security_group.alb_sg.id]
+  subnets            = [aws_subnet.BeeQuantAI_subnet_public1_ap_southeast_2a.id, aws_subnet.BeeQuantAI_subnet_public2_ap_southeast_2b.id]
 
   enable_deletion_protection = true
 
