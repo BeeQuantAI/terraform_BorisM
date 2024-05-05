@@ -4,21 +4,6 @@ variable "vpc_cidr" {
 variable "vpc_name" {
   type    = string
 }
-variable "BeeQuantAI_subnet_public1_ap_southeast_2a" {
-  type    = string
-}
-variable "BeeQuantAI_subnet_public2_ap_southeast_2b" {
-  type    = string
-}
-variable "BeeQuantAI_subnet_private1_ap_southeast_2a" {
-  type    = string
-}
-variable "BeeQuantAI_subnet_private2_ap_southeast_2b" {
-  type    = string
-}
-variable "BeeQuantAI_subnet_private3_ap_southeast_2c" {
-  type    = string
-}
 variable "alb_name" {
   type    = string
 }
@@ -56,5 +41,41 @@ variable "BeeQuantAI_nat_public1_ap_southeast_2a" {
   type    = string
 }
 variable "BeeQuantAI_nat_public2_ap_southeast_2b" {
+  type    = string
+}
+variable "subnet_cidr_blocks" {
+  type    = list(string)
+}
+variable "subnet_names" {
+  type    = list(string)
+}
+variable "availability_zones" {
+  type    = list(string)
+}
+variable "BeeQuantAI_nat_name"{
+  type    = list(string)
+}
+variable "rds_name" {
+  type    = string
+}
+variable "secret_arn" {
+  type    = string
+}
+variable "ecs_task_execution_role" {
+  type    = string
+}
+variable "ecs_task_role" {
+  type    = string
+}
+variable "ecs_task_role_policy" {
+  type    = string
+}
+variable "ecs_cluster_name" {
+  type    = string
+}
+variable "ecs_task_defination_family" {
+  type    = string
+}
+variable "image_uri" {
   type    = string
 }

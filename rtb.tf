@@ -8,7 +8,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_private1_ap_southeast_2a" {
 
   route {
     cidr_block = "0.0.0.0/16"
-    gateway_id = aws_nat_gateway.BeeQuantAI_nat_public1.id
+    gateway_id = aws_nat_gateway.BeeQuantAI_nat[0].id
   }
 
   tags = {
@@ -16,7 +16,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_private1_ap_southeast_2a" {
   }
 }
 resource "aws_route_table_association" "BeeQuantAI_rtb_association_private1_ap_southeast_2a" {
-  subnet_id      = aws_subnet.BeeQuantAI_subnet_private1_ap_southeast_2a.id
+  subnet_id      = aws_subnet.BeeQuantAI_subnets[2].id
   route_table_id = aws_route_table.BeeQuantAI_rtb_private1_ap_southeast_2a.id
 }
 
@@ -30,7 +30,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_private2_ap_southeast_2b" {
 
   route {
     cidr_block = "0.0.0.0/16"
-    gateway_id = aws_nat_gateway.BeeQuantAI_nat_public2.id
+    gateway_id = aws_nat_gateway.BeeQuantAI_nat[1].id
   }
 
   tags = {
@@ -38,7 +38,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_private2_ap_southeast_2b" {
   }
 }
 resource "aws_route_table_association" "BeeQuantAI_rtb_association_private2_ap_southeast_2b" {
-  subnet_id      = aws_subnet.BeeQuantAI_subnet_private2_ap_southeast_2b.id
+  subnet_id      = aws_subnet.BeeQuantAI_subnets[3].id
   route_table_id = aws_route_table.BeeQuantAI_rtb_private2_ap_southeast_2b.id
 }
 
@@ -60,11 +60,11 @@ resource "aws_route_table" "BeeQuantAI_rtb_public" {
   }
 }
 resource "aws_route_table_association" "BeeQuantAI_rtb_association_public1_ap_southeast_2a" {
-  subnet_id      = aws_subnet.BeeQuantAI_subnet_public1_ap_southeast_2a.id
+  subnet_id      = aws_subnet.BeeQuantAI_subnets[0].id
   route_table_id = aws_route_table.BeeQuantAI_rtb_public.id
 }
 resource "aws_route_table_association" "BeeQuantAI_rtb_association_public2_ap_southeast_2b" {
-  subnet_id      = aws_subnet.BeeQuantAI_subnet_public2_ap_southeast_2b.id
+  subnet_id      = aws_subnet.BeeQuantAI_subnets[1].id
   route_table_id = aws_route_table.BeeQuantAI_rtb_public.id
 }
 
@@ -81,6 +81,6 @@ resource "aws_route_table" "BeeQuantAI_rtb_private3_ap_southeast_2c" {
   }
 }
 resource "aws_route_table_association" "BeeQuantAI_rtb_association_private3_ap_southeast_2c" {
-  subnet_id      = aws_subnet.BeeQuantAI_subnet_private3_ap_southeast_2c.id
+  subnet_id      = aws_subnet.BeeQuantAI_subnets[4].id
   route_table_id = aws_route_table.BeeQuantAI_rtb_private3_ap_southeast_2c.id
 }
