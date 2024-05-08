@@ -9,7 +9,7 @@ on:
         description: 'Confirm version to deploy'
         required: true
         default: ''
-      Environment:
+      environment:
         description: 'Confirm environment to deploy'
         required: true
         default: ''
