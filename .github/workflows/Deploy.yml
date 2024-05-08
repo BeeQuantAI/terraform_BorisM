@@ -1,4 +1,4 @@
-name: prod Deploy
+name: Deploy
 permissions:
   contents: read
   id-token: write
@@ -8,10 +8,14 @@ on:
       version:
         description: 'Confirm version to deploy'
         required: true
-        default: 'V0.0.0.0'
+        default: ''
+      Environment:
+        description: 'Confirm environment to deploy'
+        required: true
+        default: ''
 jobs:
-  deploy-prod:
-    environment: prod
+  deploy:
+    environment: ${{ inputs.environment }}
     name: deploy by terraform
     runs-on: ubuntu-latest
     steps:
