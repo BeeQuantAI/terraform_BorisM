@@ -7,7 +7,7 @@
 **/.terraform/*
 
 # Ignore provider-specific files
-.tfvars
+*.auto.tfvars
 
 # Ignore sensitive or generated files
 *.tfvars.json
