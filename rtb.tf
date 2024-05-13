@@ -7,7 +7,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_private1_ap_southeast_2a" {
   }
 
   route {
-    cidr_block = "0.0.0.0/16"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_nat_gateway.BeeQuantAI_nat[0].id
   }
 
@@ -29,7 +29,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_private2_ap_southeast_2b" {
   }
 
   route {
-    cidr_block = "0.0.0.0/16"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_nat_gateway.BeeQuantAI_nat[1].id
   }
 
@@ -51,7 +51,7 @@ resource "aws_route_table" "BeeQuantAI_rtb_public" {
   }
 
   route {
-    cidr_block = "0.0.0.0/16"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
 

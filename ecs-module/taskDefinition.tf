@@ -9,50 +9,59 @@ resource "aws_ecs_cluster" "BeeQuantAI_ecs_cluster" {
 resource "aws_ecs_task_definition" "BeeQuantAI_ecs_task_defination" {
   family = var.ecs_task_defination_family
   requires_compatibilities = ["FARGATE"]
-  operating_system_family = "LINUX"
-  cpu = "0.5"
-  memory = "2GB"
+  cpu = 2048
+  memory = 6144
   network_mode = "awsvpc"
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn = aws_iam_role.ecs_task_role.arn
-  environment = [
+  
+  container_definitions = jsonencode([
+    {
+      name      = "platform_api"
+      image     = var.image_uri
+      cpu       = 512
+      memory    = 3072
+      essential = true
+      logconfiguration = {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": var.BeeQuantAI_ecs_task_log_group,
+          "awslogs-region": "ap-southeast-2",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      }
+      environment = [
     {
       name = "DB_PORT"
       value = "5432"
     },
     {
       name = "DB_HOST"
-      value = "aws_secretsmanager_secret.secrets.secret_string:DB_HOST::"
+      value = var.db_host
     },
     {
       name = "DB_NAME"
-      value = "aws_secretsmanager_secret.secrets.secret_string:DB_NAME::"
+      value = "${var.secret_arn}:DB_NAME::"
     },
     {
-      name = "DB_USER"
-      value = "aws_secretsmanager_secret.secrets.secret_string:DB_USER::"
+      name = "DB_USERNAME"
+      value = "a${var.secret_arn}:DB_USERNAME::"
     },
     {
       name = "DB_PASSWORD"
-      value = "aws_secretsmanager_secret.secrets.secret_string:DB_PASSWORD::"
+      value = "${var.secret_arn}:DB_PASSWORD::"
     },
     {
       name = "JWT_SECRET"
-      value = "aws_secretsmanager_secret.secrets.secret_string:JWT_SECRET::"
+      value = "${var.secret_arn}:JWT_SECRET::"
     }
-  ]
-  container_definitions = jsonencode([
-    {
-      name      = "platform_api"
-      image     = var.image_uri
-      cpu       = 1
-      memory    = 3
-      essential = true
+      ]
       portMappings = [
         {
           containerPort = 3000
           hostPort      = 3000
-          appprotocol  = "HTTP2"
+          appprotocol  = "http2"
           protocol      = "TCP"
         }
       ]
@@ -61,13 +70,15 @@ resource "aws_ecs_task_definition" "BeeQuantAI_ecs_task_defination" {
       name      = "aws-otel-collector"
       image     = "public.ecr.aws/aws-observability/aws-otel-collector:v0.38.1"
       cpu       = 0
-      memory    = 256
       essential = true
       portMappings = []
+      environment = []
+      mountpoints = []
+      volumesFrom = []
       command = [
         "--config=/etc/ecs/ecs-cloudwatch-xray.yaml"
       ]
-      logconfiguration {
+      logconfiguration = {
         "logDriver": "awslogs",
         "options": {
         "awslogs-create-group": "true",
@@ -77,13 +88,13 @@ resource "aws_ecs_task_definition" "BeeQuantAI_ecs_task_defination" {
         },
         "secretOptions": []
       }
+        systemControls = []
     }
   ])
-  enphemeral_storage {
+  ephemeral_storage {
     size_in_gib = 21
   }
-  volume {
-    name      = "service-storage"
-    host_path = "/ecs/service-storage"
-  }
+}
+resource "aws_cloudwatch_log_group" "BeeQuantAI_ecs_task_log_group" {
+  name = var.BeeQuantAI_ecs_task_log_group
 }

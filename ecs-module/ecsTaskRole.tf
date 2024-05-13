@@ -1,6 +1,3 @@
-provider "aws" {
-  region = "ap-southeast-2"  # Specify your AWS region
-}
 resource "aws_iam_role" "ecs_task_role" {
   name = var.ecs_task_role
   assume_role_policy = data.aws_iam_policy_document.ecs_task_role_assume_role_policy.json

@@ -79,3 +79,24 @@ variable "ecs_task_defination_family" {
 variable "image_uri" {
   type    = string
 }
+variable "db_identifier" {
+  type    = string
+}
+variable "db_username" {
+  type    = string
+}
+variable "db_password" {
+  type    = string
+}
+variable "db_parameter_group_name" {
+  type    = string
+}
+variable "kms_key_arn" {
+  type    = string
+}
+variable "ecs_service_name" {
+  type    = string
+}
+variable "BeeQuantAI_ecs_task_log_group" {
+  type    = string
+}

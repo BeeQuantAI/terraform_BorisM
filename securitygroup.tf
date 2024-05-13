@@ -16,9 +16,9 @@ resource "aws_vpc_security_group_ingress_rule" "alb_sg_inbound" {
 }
 resource "aws_vpc_security_group_egress_rule" "alb_sg_outbound" {
   security_group_id = aws_security_group.alb_sg.id
-  from_port         = 0
+  # from_port         = 0
   ip_protocol       = "-1"
-  to_port           = 0
+  # to_port           = 0
   cidr_ipv4         = "0.0.0.0/0"
 }
 
@@ -40,8 +40,8 @@ resource "aws_vpc_security_group_ingress_rule" "db_sg_inbound" {
 }
 resource "aws_vpc_security_group_egress_rule" "db_sg_outbound" {
   security_group_id = aws_security_group.db_sg.id
-  from_port         = 0
+  # from_port         = 0
   ip_protocol       = "-1"
-  to_port           = 0
+  # to_port           = 0
   cidr_ipv4         = "0.0.0.0/0"
 }

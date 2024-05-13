@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "default" {
   name       = "main"
-  subnet_ids = [aws_subnet.BeeQuantAI_subnets[4].id, aws_subnet.BeeQuantAI_subnets[3].id]
+  subnet_ids = [var.BeeQuantAI_subnets_id[0], var.BeeQuantAI_subnets_id[1]]
 
   tags = {
     Name = "My DB subnet group"

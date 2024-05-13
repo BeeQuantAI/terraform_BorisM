@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
 resource "aws_vpc" "platform_api_vpc" {
  cidr_block           = var.vpc_cidr
  enable_dns_hostnames = true
@@ -45,76 +53,32 @@ resource "aws_ecr_repository" "backend" {
     scan_on_push = true
   }
 }
-module "db" {
-  source = "terraform-aws-modules/rds/aws"
-
-  identifier = "bqCore"
-
-  engine            = "postgres"
-  engine_version    = "16"
-  instance_class    = "db.t3.micro"
-  allocated_storage = 20
-
-  db_name  = "bqCore"
-  username = "postgres"
-  port     = "3306"
-
-  iam_database_authentication_enabled = false
-
-  vpc_security_group_ids = aws_security_group.db_sg.id
-
-  maintenance_window = "Mon:00:00-Mon:03:00"
-  backup_window      = "03:00-06:00"
-
-  # Enhanced Monitoring - see example for details on how to create the role
-  # by yourself, in case you don't want to create it automatically
-  monitoring_interval    = "30"
-  monitoring_role_name   = "MyRDSMonitoringRole"
-  create_monitoring_role = true
-
-  tags = {
-    Owner       = "user"
-    Environment = "dev"
-  }
-
-  # DB subnet group
-  create_db_subnet_group = true
-  subnet_ids             = [aws_subnet.BeeQuantAI_subnets[3].id, aws_subnet.BeeQuantAI_subnets[4].id]
-
-  # DB parameter group
-  family = "mysql5.7"
-
-  # DB option group
-  major_engine_version = "5.7"
-
-  # Database Deletion Protection
-  deletion_protection = true
-
-  parameters = [
-    {
-      name  = "character_set_client"
-      value = "utf8mb4"
-    },
-    {
-      name  = "character_set_server"
-      value = "utf8mb4"
-    }
-  ]
-
-  options = [
-    {
-      option_name = "MARIADB_AUDIT_PLUGIN"
-
-      option_settings = [
-        {
-          name  = "SERVER_AUDIT_EVENTS"
-          value = "CONNECT"
-        },
-        {
-          name  = "SERVER_AUDIT_FILE_ROTATIONS"
-          value = "37"
-        },
-      ]
-    },
-  ]
+module "ecs" {
+  source = "./ecs-module"
+  ecs_cluster_name = var.ecs_cluster_name
+  ecs_task_execution_role = var.ecs_task_execution_role
+  ecs_task_role = var.ecs_task_role
+  ecs_task_role_policy = var.ecs_task_role_policy
+  ecs_task_defination_family = var.ecs_task_defination_family
+  image_uri = var.image_uri
+  subnet_ids = [aws_subnet.BeeQuantAI_subnets[2].id, aws_subnet.BeeQuantAI_subnets[3].id]
+  alb_sg_id = aws_security_group.alb_sg.id
+  target_group_arn = aws_lb_target_group.platform_api_tg.arn
+  ecs_service_name = var.ecs_cluster_name
+  BeeQuantAI_ecs_task_log_group = var.BeeQuantAI_ecs_task_log_group
+  db_host = module.rds.db_host
+  secret_arn = var.secret_arn
+}
+module "rds" {
+  source = "./rds-module"
+  db_identifier = var.db_identifier
+  db_username = var.rds_name
+  db_password = var.rds_name
+  db_parameter_group_name = var.rds_name
+  availability_zones = var.availability_zones
+  subnet_cidr_blocks = var.subnet_cidr_blocks
+  subnet_names = var.subnet_names
+  kms_key_arn = var.kms_key_arn
+  db_sg_id = aws_security_group.db_sg.id
+  BeeQuantAI_subnets_id = [aws_subnet.BeeQuantAI_subnets[4].id, aws_subnet.BeeQuantAI_subnets[3].id]
 }

@@ -5,12 +5,12 @@ resource "aws_ecs_service" "BeeQuantAI_ecs_service" {
   desired_count   = 2
   launch_type     = "FARGATE"
   network_configuration {
-    subnets          = var.subnets
-    security_groups  = var.security_groups
+    subnets          = var.subnet_ids
+    security_groups  = [var.alb_sg_id]
     assign_public_ip = true
   }
   load_balancer {
-    target_group_arn = aws_lb_target_group.BeeQuantAI_lb_target_group.arn
+    target_group_arn = var.target_group_arn
     container_name   = "platform_api"
     container_port   = 3000
   }

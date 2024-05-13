@@ -5,7 +5,7 @@ resource "aws_lb" "platform_api_alb" {
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.BeeQuantAI_subnets[0].id, aws_subnet.BeeQuantAI_subnets[1].id]
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
 #   access_logs {
 #     bucket  = aws_s3_bucket.alb_logs.id
@@ -34,4 +34,15 @@ resource "aws_lb_target_group" "platform_api_tg" {
   port     = 3000
   protocol = "HTTP"
   vpc_id   = aws_vpc.platform_api_vpc.id
+  target_type = "ip"
+  health_check {
+    path                = "/healthcheck"
+    protocol            = "HTTP"
+    port                = "3000"
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 30
+    matcher             = "200"
+  }
 }
