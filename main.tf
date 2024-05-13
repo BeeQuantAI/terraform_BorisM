@@ -68,13 +68,18 @@ module "ecs" {
   BeeQuantAI_ecs_task_log_group = var.BeeQuantAI_ecs_task_log_group
   db_host = module.rds.db_host
   secret_arn = var.secret_arn
+  db_name = var.db_name
+  db_username = var.db_username
+  db_password = var.db_password
+  jwt_secret = var.jwt_secret
 }
 module "rds" {
   source = "./rds-module"
   db_identifier = var.db_identifier
-  db_username = var.rds_name
-  db_password = var.rds_name
-  db_parameter_group_name = var.rds_name
+  db_username = var.db_username
+  db_password = var.db_password
+  db_name = var.db_name
+  # db_parameter_group_name = var.db_parameter_group_name
   availability_zones = var.availability_zones
   subnet_cidr_blocks = var.subnet_cidr_blocks
   subnet_names = var.subnet_names

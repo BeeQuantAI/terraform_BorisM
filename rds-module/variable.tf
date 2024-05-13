@@ -10,10 +10,10 @@ variable "db_password" {
   description = "DB password"
   type        = string
 }
-variable "db_parameter_group_name" {
-  description = "DB parameter group name"
-  type        = string
-}
+# variable "db_parameter_group_name" {
+#   description = "DB parameter group name"
+#   type        = string
+# }
 variable "availability_zones" {
   description = "Availability zones"
   type        = list(string)
@@ -37,4 +37,8 @@ variable "db_sg_id" {
 variable "BeeQuantAI_subnets_id" {
     description = "Subnets ids"
     type        = list(string)
+}
+variable "db_name" {
+    description = "DB name"
+    type        = string
 }

@@ -54,3 +54,19 @@ variable "secret_arn" {
   description = "Secret ARN"
   type        = string
 }
+variable "db_name" {
+  description = "DB name"
+  type        = string
+}
+variable "db_password" {
+  description = "DB password"
+  type        = string
+}
+variable "db_username" {
+  description = "DB username"
+  type        = string
+}
+variable "jwt_secret" {
+  description = "JWT secret"
+  type        = string
+}

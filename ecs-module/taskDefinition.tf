@@ -42,19 +42,19 @@ resource "aws_ecs_task_definition" "BeeQuantAI_ecs_task_defination" {
     },
     {
       name = "DB_NAME"
-      value = "${var.secret_arn}:DB_NAME::"
+      value = var.db_name
     },
     {
       name = "DB_USERNAME"
-      value = "a${var.secret_arn}:DB_USERNAME::"
+      value = var.db_username
     },
     {
       name = "DB_PASSWORD"
-      value = "${var.secret_arn}:DB_PASSWORD::"
+      value = var.db_password
     },
     {
       name = "JWT_SECRET"
-      value = "${var.secret_arn}:JWT_SECRET::"
+      value = var.jwt_secret
     }
       ]
       portMappings = [
@@ -65,30 +65,6 @@ resource "aws_ecs_task_definition" "BeeQuantAI_ecs_task_defination" {
           protocol      = "TCP"
         }
       ]
-    },
-    {
-      name      = "aws-otel-collector"
-      image     = "public.ecr.aws/aws-observability/aws-otel-collector:v0.38.1"
-      cpu       = 0
-      essential = true
-      portMappings = []
-      environment = []
-      mountpoints = []
-      volumesFrom = []
-      command = [
-        "--config=/etc/ecs/ecs-cloudwatch-xray.yaml"
-      ]
-      logconfiguration = {
-        "logDriver": "awslogs",
-        "options": {
-        "awslogs-create-group": "true",
-        "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
-        "awslogs-region": "ap-southeast-2",
-        "awslogs-stream-prefix": "ecs"
-        },
-        "secretOptions": []
-      }
-        systemControls = []
     }
   ])
   ephemeral_storage {

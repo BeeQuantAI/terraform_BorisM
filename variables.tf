@@ -82,10 +82,16 @@ variable "image_uri" {
 variable "db_identifier" {
   type    = string
 }
+variable "db_name" {
+  type    = string
+}
 variable "db_username" {
   type    = string
 }
 variable "db_password" {
+  type    = string
+}
+variable "jwt_secret" {
   type    = string
 }
 variable "db_parameter_group_name" {

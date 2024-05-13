@@ -1,7 +1,7 @@
 resource "aws_db_instance" "default" {
   allocated_storage    = 20
   identifier           = var.db_identifier
-  db_name              = "bqCore"
+  db_name              = var.db_name
   engine               = "postgres"
   engine_version       = "16"
   instance_class       = "db.t3.micro"
