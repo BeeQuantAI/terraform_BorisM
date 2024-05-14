@@ -65,6 +65,30 @@ resource "aws_ecs_task_definition" "BeeQuantAI_ecs_task_defination" {
           protocol      = "TCP"
         }
       ]
+    },
+    {
+      name      = "aws-otel-collector"
+      image     = "public.ecr.aws/aws-observability/aws-otel-collector:v0.38.1"
+      cpu       = 0
+      essential = true
+      portMappings = []
+      environment = []
+      mountpoints = []
+      volumesFrom = []
+      command = [
+        "--config=/etc/ecs/ecs-cloudwatch-xray.yaml"
+      ]
+      logconfiguration = {
+        "logDriver": "awslogs",
+        "options": {
+        "awslogs-create-group": "true",
+        "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+        "awslogs-region": "ap-southeast-2",
+        "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      }
+        systemControls = []
     }
   ])
   ephemeral_storage {

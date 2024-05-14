@@ -106,3 +106,6 @@ variable "ecs_service_name" {
 variable "BeeQuantAI_ecs_task_log_group" {
   type    = string
 }
+variable "grafana_sg_name" {
+  type    = string
+}

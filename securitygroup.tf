@@ -45,3 +45,12 @@ resource "aws_vpc_security_group_egress_rule" "db_sg_outbound" {
   # to_port           = 0
   cidr_ipv4         = "0.0.0.0/0"
 }
+resource "aws_security_group" "grafana_sg" {
+  name        = var.grafana_sg_name
+  description = "allow grafana to connect to everything"
+  vpc_id      = aws_vpc.platform_api_vpc.id
+
+  tags = {
+    Name = "allow_grafana_tcp"
+  }
+}
