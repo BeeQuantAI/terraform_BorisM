@@ -21,4 +21,5 @@ resource "aws_db_instance" "default" {
 }
 output "db_host" {
   value = aws_db_instance.default.address
+  sensitive = true
 }
