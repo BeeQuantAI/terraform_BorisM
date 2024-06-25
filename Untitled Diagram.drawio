@@ -1,6 +1,6 @@
-<mxfile modified="2024-06-25T11:08:40.810Z" host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="euY0GRJzX8g3wPpNHz1D" version="24.3.0" type="github">
+<mxfile modified="2024-06-25T11:20:00.247Z" host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="dYu9pc80SluIIYmFuiwh" version="24.3.0" type="github">
   <diagram id="Ht1M8jgEwFfnCIfOTk4-" name="Page-1">
-    <mxGraphModel dx="1630" dy="244" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2440" dy="1292" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -154,8 +154,8 @@
             <mxPoint x="694.0000000000005" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5XdPUicbo1l-6WFa_Wm8-64" value="Amazon Managed&lt;div&gt;&amp;nbsp;Grafana&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
-          <mxGeometry x="660" y="396.5" width="120" height="40" as="geometry" />
+        <mxCell id="5XdPUicbo1l-6WFa_Wm8-64" value="Amazon Managed&lt;div&gt;&amp;nbsp;Service for Grafana&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
+          <mxGeometry x="655" y="580.25" width="130" height="40" as="geometry" />
         </mxCell>
         <mxCell id="5XdPUicbo1l-6WFa_Wm8-67" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=blockThin;html=1;curved=0;rounded=0;endSize=4;startSize=8;dashed=1;endFill=1;strokeWidth=4;" edge="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -173,6 +173,21 @@
             <Array as="points">
               <mxPoint x="530" y="281" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5XdPUicbo1l-6WFa_Wm8-69" value="Amazon&amp;nbsp;&lt;div&gt;Cloud Watch&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
+          <mxGeometry x="675" y="400" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5XdPUicbo1l-6WFa_Wm8-70" value="CPU Usage,&lt;div&gt;Memory Usage&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
+          <mxGeometry x="560" y="340.25" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5XdPUicbo1l-6WFa_Wm8-72" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.managed_service_for_grafana;" vertex="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
+          <mxGeometry x="681" y="490.5" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="5XdPUicbo1l-6WFa_Wm8-73" value="" style="endArrow=classic;html=1;rounded=0;dashed=1;strokeWidth=4;" edge="1" parent="5XdPUicbo1l-6WFa_Wm8-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="440.5" as="sourcePoint" />
+            <mxPoint x="720" y="480.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="5XdPUicbo1l-6WFa_Wm8-52" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" vertex="1" parent="1">
